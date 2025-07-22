@@ -12,7 +12,10 @@
   "dependencies": {
     "chart.js": "^4.5.0",
     "react": "^19.1.0",
+<<<<<<< HEAD
     "react-chartjs-2": "^5.3.0",
+=======
+>>>>>>> origin/development
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.7.0"
   },
