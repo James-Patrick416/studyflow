@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'; // Import missing components
+import { Routes, Route } from 'react-router-dom';
 import './styles/App.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
