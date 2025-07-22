@@ -1,0 +1,20 @@
+{
+  "sessions": [
+    {
+      "id": 1,
+      "technique": "pomodoro",
+      "duration": 25,
+      "date": "2023-07-20T12:00:00Z",
+      "focusLevel": "High",
+      "notes": "Focused well until phone notification"
+    },
+    {
+      "id": 2,
+      "technique": "deepwork",
+      "duration": 90,
+      "date": "2023-07-20T14:30:00Z",
+      "focusLevel": "Medium",
+      "notes": "Good deep work session, but got distracted around the 60-minute mark"
+    }
+  ]
+}
