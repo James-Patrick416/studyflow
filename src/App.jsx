@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/App.css';
 import NavBar from './components/NavBar';
-import Home from './pages/Home';
-import Pomodoro from './pages/Pomodoro';
-import Custom from './pages/Custom';
-import DeepWork from './pages/DeepWork';
-import Stats from './pages/Stats';
+import Home from './pages/Home.jsx';
+import Pomodoro from './pages/Pomodoro.jsx';
+import Custom from './pages/Custom.jsx';
+import DeepWork from './pages/DeepWork.jsx';
+import Stats from './pages/Stats.jsx';
 
 export default function App() {
   return (
