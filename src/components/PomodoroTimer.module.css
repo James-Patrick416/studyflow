@@ -1,0 +1,36 @@
+.timerContainer {
+  text-align: center;
+  padding: 2rem;
+  max-width: 400px;
+  margin: 0 auto;
+  background: #f8f9fa;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.timeDisplay {
+  font-size: 5rem;
+  font-family: 'Courier New', monospace;
+  margin: 1rem 0;
+  color: #2c3e50;
+}
+
+.button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  margin: 0 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: #2980b9;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
