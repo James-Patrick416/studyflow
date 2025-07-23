@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './styles/App.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home.jsx';
@@ -9,7 +9,6 @@ import Stats from './pages/Stats.jsx';
 
 export default function App() {
   return (
-    <Router>
       <div className="app-container">
         <NavBar />
         <main className="main-content">
@@ -22,8 +21,7 @@ export default function App() {
             <Route path="*" element={<h2>404 - Page Not Found</h2>} />
           </Routes>
         </main>
-      </div>
-    </Router>
+      </div> 
   );
 }
 
