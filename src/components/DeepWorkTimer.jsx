@@ -1,17 +1,17 @@
-// src/pages/Pomodoro.jsx
+// src/components/DeepWorkTimer.jsx
 import { useState, useEffect } from 'react';
-import SessionForm from '../components/SessionForm';
+import SessionForm from './SessionForm';
 
-const Pomodoro = () => {
+const DeepWorkTimer = () => {
   const [isActive, setIsActive] = useState(false);
   const [isFocusTime, setIsFocusTime] = useState(true);
-  const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(90 * 60); // 90 minutes in seconds
   const [showForm, setShowForm] = useState(false);
   const [sessions, setSessions] = useState([]);
 
   useEffect(() => {
     let interval = null;
-
+    
     if (isActive && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
@@ -20,10 +20,10 @@ const Pomodoro = () => {
       clearInterval(interval);
       setIsActive(false);
       setIsFocusTime(!isFocusTime);
-      setTimeLeft(isFocusTime ? 5 * 60 : 25 * 60); // Switch between 25m focus and 5m break
+      setTimeLeft(isFocusTime ? 30 * 60 : 90 * 60); // Switch between 90m focus and 30m break
       setShowForm(isFocusTime); // Show form only after focus sessions
     }
-
+    
     return () => clearInterval(interval);
   }, [isActive, timeLeft, isFocusTime]);
 
@@ -34,7 +34,7 @@ const Pomodoro = () => {
   const resetTimer = () => {
     setIsActive(false);
     setIsFocusTime(true);
-    setTimeLeft(25 * 60);
+    setTimeLeft(90 * 60);
     setShowForm(false);
   };
 
@@ -50,28 +50,22 @@ const Pomodoro = () => {
   };
 
   return (
-    <div className="pomodoro-page">
-      <h1>Pomodoro Technique</h1>
-      <p className="description">
-        Work for 25 minutes, then take a 5-minute break. Repeat for 4 cycles before taking a longer break.
-      </p>
-
-      <div className="timer-container">
-        <p className="timer-mode">{isFocusTime ? 'Focus Time' : 'Break Time'}</p>
-        <div className="timer-display">{formatTime(timeLeft)}</div>
-
-        <div className="timer-controls">
-          <button onClick={toggleTimer}>
-            {isActive ? 'Pause' : 'Start'}
-          </button>
-          <button onClick={resetTimer}>Reset</button>
-        </div>
+    <div className="deep-work-timer">
+      <h2>Deep Work Mode</h2>
+      <p className="timer-mode">{isFocusTime ? 'Focus Time' : 'Break Time'}</p>
+      <div className="timer-display">{formatTime(timeLeft)}</div>
+      
+      <div className="timer-controls">
+        <button onClick={toggleTimer}>
+          {isActive ? 'Pause' : 'Start'}
+        </button>
+        <button onClick={resetTimer}>Reset</button>
       </div>
-
+      
       {showForm && (
-        <SessionForm
-          technique="pomodoro"
-          duration={25}
+        <SessionForm 
+          technique="deepwork" 
+          duration={90}
           onSessionSubmit={handleSessionSubmit}
         />
       )}
@@ -79,4 +73,4 @@ const Pomodoro = () => {
   );
 };
 
-export default Pomodoro;
+export default DeepWorkTimer;
