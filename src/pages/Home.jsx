@@ -1,7 +1,7 @@
 // src/pages/Home.jsx
-import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './Home.module.css';
 
 export default function Home() {
   const [quote, setQuote] = useState({ content: '', author: '' });
@@ -17,18 +17,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="home-page">
-      <h1>Welcome to STUDYFLOW</h1>
+    <div className={styles.container}>
+      <h1 className={styles.header}>Welcome to STUDYFLOW</h1>
       
-      <div className="motivational-quote">
-        <p>"{quote.content}"</p>
-        <small>- {quote.author}</small>
+      <div className={styles.quoteContainer}>
+        <p className={styles.quoteText}>"{quote.content}"</p>
+        <small className={styles.quoteAuthor}>- {quote.author}</small>
       </div>
 
-      <div className="cta-buttons">
-        <Link to="/pomodoro" className="btn">Start Pomodoro</Link>
-        <Link to="/custom" className="btn">Custom Timer</Link>
-        <Link to="/deepwork" className="btn">Deep Work</Link>
+      <div className={styles.buttons}>
+        <Link to="/pomodoro" className={styles.button}>Start Pomodoro</Link>
+        <Link to="/custom" className={styles.button}>Custom Timer</Link>
+        <Link to="/deepwork" className={styles.button}>Deep Work</Link>
       </div>
     </div>
   );
