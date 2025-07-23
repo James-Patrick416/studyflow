@@ -1,5 +1,3 @@
-import DeepWorkTimer from '../components/DeepWorkTimer';
-
 const DeepWork = () => {
   return (
     <div style={{

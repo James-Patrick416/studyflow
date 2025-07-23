@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import SessionForm from '../components/SessionForm';
 
 const Pomodoro = () => {
   const [isActive, setIsActive] = useState(false);
