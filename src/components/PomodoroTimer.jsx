@@ -1,7 +1,6 @@
-// src/components/PomodoroTimer.jsx
+import styles from './PomodoroTimer.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './PomodoroTimer.module.css';
 
 export default function PomodoroTimer() {
   const [minutes, setMinutes] = useState(25);
