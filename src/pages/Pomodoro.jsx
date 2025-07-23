@@ -11,7 +11,7 @@ const Pomodoro = () => {
 
   useEffect(() => {
     let interval = null;
-    
+
     if (isActive && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
@@ -23,7 +23,7 @@ const Pomodoro = () => {
       setTimeLeft(isFocusTime ? 5 * 60 : 25 * 60); // Switch between 25m focus and 5m break
       setShowForm(isFocusTime); // Show form only after focus sessions
     }
-    
+
     return () => clearInterval(interval);
   }, [isActive, timeLeft, isFocusTime]);
 
@@ -55,11 +55,11 @@ const Pomodoro = () => {
       <p className="description">
         Work for 25 minutes, then take a 5-minute break. Repeat for 4 cycles before taking a longer break.
       </p>
-      
+
       <div className="timer-container">
         <p className="timer-mode">{isFocusTime ? 'Focus Time' : 'Break Time'}</p>
         <div className="timer-display">{formatTime(timeLeft)}</div>
-        
+
         <div className="timer-controls">
           <button onClick={toggleTimer}>
             {isActive ? 'Pause' : 'Start'}
@@ -67,10 +67,10 @@ const Pomodoro = () => {
           <button onClick={resetTimer}>Reset</button>
         </div>
       </div>
-      
+
       {showForm && (
-        <SessionForm 
-          technique="pomodoro" 
+        <SessionForm
+          technique="pomodoro"
           duration={25}
           onSessionSubmit={handleSessionSubmit}
         />
