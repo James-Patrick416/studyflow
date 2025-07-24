@@ -1,5 +1,3 @@
-// src/components/CustomTimer.jsx
-import styles from './CustomTimer.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,44 +46,121 @@ export default function CustomTimer() {
   };
 
   return (
-    <div className={styles.customTimer}>
-      <h2>Custom Timer</h2>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1.5rem'
+    }}>
       {!isActive && (
-        <div className={styles.timeSettings}>
-          <label>
-            Focus (min):
+        <div style={{
+          display: 'flex',
+          gap: '1.5rem',
+          marginBottom: '1rem',
+          justifyContent: 'center'
+        }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <label style={{
+              marginBottom: '0.5rem',
+              fontWeight: '500',
+              color: '#2d3748'
+            }}>Focus (minutes)</label>
             <input 
               type="number" 
               min="1" 
               value={focusTime} 
               onChange={(e) => setFocusTime(Number(e.target.value))} 
+              style={{
+                padding: '0.75rem',
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px',
+                width: '100px',
+                textAlign: 'center'
+              }}
             />
-          </label>
-          <label>
-            Break (min):
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <label style={{
+              marginBottom: '0.5rem',
+              fontWeight: '500',
+              color: '#2d3748'
+            }}>Break (minutes)</label>
             <input 
               type="number" 
               min="1" 
               value={breakTime} 
               onChange={(e) => setBreakTime(Number(e.target.value))} 
+              style={{
+                padding: '0.75rem',
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px',
+                width: '100px',
+                textAlign: 'center'
+              }}
             />
-          </label>
+          </div>
         </div>
       )}
-      <div className={styles.timerDisplay}>
-        <div className={`${styles.modeIndicator} ${isFocusMode ? styles.focus : styles.break}`}>
+
+      <div style={{
+        backgroundColor: '#f7fafc',
+        padding: '2rem',
+        borderRadius: '12px',
+        textAlign: 'center'
+      }}>
+        <div style={{
+          fontSize: '1.2rem',
+          fontWeight: '600',
+          color: isFocusMode ? '#2b6cb0' : '#38a169',
+          marginBottom: '1rem'
+        }}>
           {isFocusMode ? 'Focus Time' : 'Break Time'}
         </div>
-        <div className={styles.time}>
+        <div style={{
+          fontSize: '4rem',
+          fontFamily: 'monospace',
+          color: '#1e40af',
+          margin: '1rem 0'
+        }}>
           {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
         </div>
       </div>
-      <div className={styles.controls}>
-      <button onClick={toggleTimer}>
-        {isActive ? 'Pause' : 'Start'}
-      </button>
-      <button onClick={resetTimer}>Reset</button>
-    </div>
+
+      <div style={{
+        display: 'flex',
+        gap: '1rem',
+        justifyContent: 'center'
+      }}>
+        <button 
+          onClick={toggleTimer}
+          style={{
+            padding: '0.75rem 1.5rem',
+            backgroundColor: '#3b82f6',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s'
+          }}
+        >
+          {isActive ? 'Pause' : 'Start'}
+        </button>
+        <button 
+          onClick={resetTimer}
+          style={{
+            padding: '0.75rem 1.5rem',
+            backgroundColor: '#e2e8f0',
+            color: '#4a5568',
+            border: 'none',
+            borderRadius: '8px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s'
+          }}
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
 }
