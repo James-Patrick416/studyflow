@@ -104,6 +104,7 @@ Color Scheme: Blue-focused (calm productivity)
 Responsive: Works on mobile & desktop
 
 📦 Project Structure
+ ```
 text
 studyflow/
 ├── public/
@@ -115,6 +116,8 @@ studyflow/
 │   └── styles/          # Global styles
 ├── db.json              # Mock database
 └── package.json
+
+ ```
 🙏 Credits
 Timer logic inspired by Cal Newport's Deep Work
 
