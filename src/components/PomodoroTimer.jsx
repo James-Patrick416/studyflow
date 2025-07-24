@@ -1,4 +1,3 @@
-// src/components/PomodoroTimer.jsx
 import styles from './PomodoroTimer.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,10 +18,10 @@ export default function PomodoroTimer() {
             navigate('/session-form?technique=pomodoro');
             return;
           }
-          setMinutes(minutes - 1);
+          setMinutes((prev) => prev - 1);
           setSeconds(59);
         } else {
-          setSeconds(seconds - 1);
+          setSeconds((prev) => prev - 1);
         }
       }, 1000);
     }
@@ -30,6 +29,7 @@ export default function PomodoroTimer() {
   }, [isActive, minutes, seconds, navigate]);
 
   const toggleTimer = () => setIsActive(!isActive);
+
   const resetTimer = () => {
     setIsActive(false);
     setMinutes(25);

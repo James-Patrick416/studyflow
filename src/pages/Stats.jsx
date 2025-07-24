@@ -19,8 +19,9 @@ export default function Stats() {
     const fetchSessions = async () => {
       try {
         const res = await fetch("http://localhost:3001/sessions");
-        if (!res.ok) throw new Error("Failed to fetch");
-        setSessions(await res.json());
+        if (!res.ok) throw new Error("Failed to fetch sessions");
+        const data = await res.json();
+        setSessions(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -63,8 +64,8 @@ export default function Stats() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updates)
       });
-      const data = await res.json();
-      setSessions(sessions.map(s => s.id === id ? data : s));
+      const updated = await res.json();
+      setSessions(sessions.map(s => s.id === id ? updated : s));
     } catch (err) {
       setError("Failed to update session");
     }
@@ -90,7 +91,7 @@ export default function Stats() {
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem' }}>
-      <StatsPanel sessions={sessions} onAddSession={() => document.getElementById('create-form').scrollIntoView()} />
+      <StatsPanel sessions={sessions} onAddSession={() => document.getElementById('create-form')?.scrollIntoView()} />
 
       {/* Search and Filter */}
       <div style={{ margin: '1rem 0' }}>
@@ -109,19 +110,23 @@ export default function Stats() {
       </div>
 
       {/* Create Form */}
-      <div id="create-form" style={{
-        backgroundColor: '#f1f5f9',
-        padding: '1rem',
-        borderRadius: '0.5rem',
-        margin: '1rem 0'
-      }}>
+      <div
+        id="create-form"
+        style={{
+          backgroundColor: '#f1f5f9',
+          padding: '1rem',
+          borderRadius: '0.5rem',
+          margin: '1rem 0'
+        }}
+      >
         <h3 style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Add New Session</h3>
+
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <div>
             <label style={{ display: 'block', marginBottom: '0.25rem' }}>Technique</label>
             <select
               value={newSession.technique}
-              onChange={(e) => setNewSession({...newSession, technique: e.target.value})}
+              onChange={(e) => setNewSession({ ...newSession, technique: e.target.value })}
               style={{ width: '100%', padding: '0.5rem' }}
             >
               <option value="pomodoro">Pomodoro</option>
@@ -133,7 +138,7 @@ export default function Stats() {
             <label style={{ display: 'block', marginBottom: '0.25rem' }}>Focus Level</label>
             <select
               value={newSession.focusLevel}
-              onChange={(e) => setNewSession({...newSession, focusLevel: e.target.value})}
+              onChange={(e) => setNewSession({ ...newSession, focusLevel: e.target.value })}
               style={{ width: '100%', padding: '0.5rem' }}
             >
               <option value="Low">Low</option>
@@ -142,14 +147,16 @@ export default function Stats() {
             </select>
           </div>
         </div>
+
         <div style={{ marginTop: '1rem' }}>
           <label style={{ display: 'block', marginBottom: '0.25rem' }}>Notes</label>
           <textarea
             value={newSession.notes}
-            onChange={(e) => setNewSession({...newSession, notes: e.target.value})}
+            onChange={(e) => setNewSession({ ...newSession, notes: e.target.value })}
             style={{ width: '100%', padding: '0.5rem', minHeight: '80px' }}
           />
         </div>
+
         <button
           onClick={handleCreate}
           style={{
