@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from 'react-router-dom';
+import './styles/App.css';
+import NavBar from './components/NavBar';
+import Home from './pages/Home';
+import Pomodoro from './pages/Pomodoro';
+import Custom from './pages/Custom';
+import DeepWork from './pages/DeepWork';
+import Stats from './pages/Stats';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-container">
+      <NavBar />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pomodoro" element={<Pomodoro />} />
+          <Route path="/custom" element={<Custom />} />
+          <Route path="/deepwork" element={<DeepWork />} />
+          <Route path="/stats" element={<Stats />} />
+          <Route path="*" element={<h2>404 - Page Not Found</h2>} />
+        </Routes>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
