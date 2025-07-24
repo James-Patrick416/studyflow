@@ -144,12 +144,36 @@ Contributions are welcome! Please follow these steps:
 
 Fork the repository
 
-Create a new branch (git checkout -b feature/your-feature)
+## Project Structure
+studyflow/
+├── public/
+├── src/
+│ ├── assets/ # Images & music
+│ ├── components/ # Reusable components
+│ ├── pages/ # Route components
+│ ├── utils/ # Custom hooks
+│ └── styles/ # Global styles
+├── db.json # Mock database
+└── package.json
 
-Commit your changes (git commit -m 'Add some feature')
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
 
+🙏 Credits
+Timer logic inspired by Cal Newport's Deep Work
+text
 Push to the branch (git push origin feature/your-feature)
 
 Open a Pull Request
 
-DEVELOPED BY GROUP 6 (ANN NGATIA, MOHAMED AHMED, JAMES PATRICK💓❤ )
+## Credits & Acknowledgements
+- Timer logic inspired by Cal Newport's Deep Work methodology
+- Developed with ❤️ by Group 6:
+  - Ann Ngatia
+  - Mohamed Ahmed
+  - James Patrick
