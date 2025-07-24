@@ -22,7 +22,7 @@ const SessionForm = ({ technique, duration, onSessionSubmit }) => {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/sessions', {
+      const response = await fetch('https://studyflow-0rqf.onrender.com/sessions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newSession)

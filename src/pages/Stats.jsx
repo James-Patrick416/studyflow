@@ -18,7 +18,7 @@ export default function Stats() {
   useEffect(() => {
     const fetchSessions = async () => {
       try {
-        const res = await fetch("http://localhost:3001/sessions");
+        const res = await fetch("https://studyflow-0rqf.onrender.com/sessions");
         if (!res.ok) throw new Error("Failed to fetch sessions");
         const data = await res.json();
         setSessions(data);
@@ -34,7 +34,7 @@ export default function Stats() {
   // Create new session
   const handleCreate = async () => {
     try {
-      const res = await fetch("http://localhost:3001/sessions", {
+      const res = await fetch("https://studyflow-0rqf.onrender.com/sessions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -59,7 +59,7 @@ export default function Stats() {
   // Update session
   const handleUpdate = async (id, updates) => {
     try {
-      const res = await fetch(`http://localhost:3001/sessions/${id}`, {
+      const res = await fetch(`https://studyflow-0rqf.onrender.com/sessions/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updates)
@@ -74,7 +74,7 @@ export default function Stats() {
   // Delete session
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:3001/sessions/${id}`, { method: "DELETE" });
+      await fetch(`https://studyflow-0rqf.onrender.com/sessions/${id}`, { method: "DELETE" });
       setSessions(sessions.filter(s => s.id !== id));
     } catch (err) {
       setError("Failed to delete session");
