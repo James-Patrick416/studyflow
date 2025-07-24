@@ -42,6 +42,7 @@ const Pomodoro = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div style={{
       maxWidth: '800px',
       margin: '0 auto',
@@ -138,6 +139,20 @@ const Pomodoro = () => {
               }
             }}
           >
+=======
+    <div className="pomodoro-page">
+      <h1>Pomodoro Technique</h1>
+      <p className="description">
+        Work for 25 minutes, then take a 5-minute break. Repeat for 4 cycles before taking a longer break.
+      </p>
+
+      <div className="timer-container">
+        <p className="timer-mode">{isFocusTime ? 'Focus Time' : 'Break Time'}</p>
+        <div className="timer-display">{formatTime(timeLeft)}</div>
+
+        <div className="timer-controls">
+          <button onClick={toggleTimer}>
+>>>>>>> 36dd791c7301493ebff45f80634020162b8a5a88
             {isActive ? 'Pause' : 'Start'}
           </button>
           <button 
@@ -164,6 +179,7 @@ const Pomodoro = () => {
       </div>
 
       {showForm && (
+<<<<<<< HEAD
         <div style={{
           backgroundColor: 'white',
           borderRadius: '12px',
@@ -176,6 +192,13 @@ const Pomodoro = () => {
             onSessionSubmit={handleSessionSubmit}
           />
         </div>
+=======
+        <SessionForm
+          technique="pomodoro"
+          duration={25}
+          onSessionSubmit={handleSessionSubmit}
+        />
+>>>>>>> 36dd791c7301493ebff45f80634020162b8a5a88
       )}
 
       <div style={{
