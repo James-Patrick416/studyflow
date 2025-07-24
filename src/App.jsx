@@ -7,7 +7,7 @@ import Custom from './pages/Custom';
 import DeepWork from './pages/DeepWork';
 import Stats from './pages/Stats';
 
-export default function App() {
+function App() {
   return (
     <div className="app-container">
       <NavBar />
@@ -24,3 +24,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;

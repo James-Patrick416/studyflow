@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import SessionForm from '../components/SessionForm';
 
 const Pomodoro = () => {
   const [isActive, setIsActive] = useState(false);
@@ -12,7 +13,7 @@ const Pomodoro = () => {
 
     if (isActive && timeLeft > 0) {
       interval = setInterval(() => {
-        setTimeLeft(prev => prev - 1);
+        setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
     } else if (isActive && timeLeft === 0) {
       clearInterval(interval);
@@ -25,7 +26,7 @@ const Pomodoro = () => {
     return () => clearInterval(interval);
   }, [isActive, timeLeft, isFocusTime]);
 
-  const toggleTimer = () => setIsActive(prev => !prev);
+  const toggleTimer = () => setIsActive((prev) => !prev);
 
   const resetTimer = () => {
     setIsActive(false);
@@ -41,14 +42,14 @@ const Pomodoro = () => {
   };
 
   const handleSessionSubmit = (newSession) => {
-    setSessions(prev => [...prev, newSession]);
+    setSessions((prev) => [...prev, newSession]);
     setShowForm(false);
   };
 
   return (
     <div style={styles.container}>
       <header style={styles.header}>
-        <h1 style={{ ...styles.title, color: 'transparent' }}>Pomodoro Technique</h1>
+        <h1 style={styles.title}>Pomodoro Technique</h1>
         <p style={styles.description}>
           Work for 25 minutes, then take a 5-minute break.
           <span style={{ display: 'block' }}>
@@ -132,6 +133,7 @@ const styles = {
     background: 'linear-gradient(90deg, #1e40af, #3b82f6)',
     WebkitBackgroundClip: 'text',
     backgroundClip: 'text',
+    color: 'transparent',
   },
   description: {
     color: '#4b5563',
@@ -233,4 +235,3 @@ const styles = {
 };
 
 export default Pomodoro;
-

@@ -7,7 +7,6 @@ export default function Stats() {
   const [filter, setFilter] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [newSession, setNewSession] = useState({
     technique: 'pomodoro',
     duration: 25,
@@ -52,7 +51,7 @@ export default function Stats() {
         focusLevel: 'Medium',
         notes: ''
       });
-    } catch {
+    } catch (err) {
       setError("Failed to create session");
     }
   };
@@ -67,7 +66,7 @@ export default function Stats() {
       });
       const updated = await res.json();
       setSessions(sessions.map(s => s.id === id ? updated : s));
-    } catch {
+    } catch (err) {
       setError("Failed to update session");
     }
   };
@@ -77,7 +76,7 @@ export default function Stats() {
     try {
       await fetch(`http://localhost:3001/sessions/${id}`, { method: "DELETE" });
       setSessions(sessions.filter(s => s.id !== id));
-    } catch {
+    } catch (err) {
       setError("Failed to delete session");
     }
   };
@@ -94,7 +93,7 @@ export default function Stats() {
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem' }}>
       <StatsPanel sessions={sessions} onAddSession={() => document.getElementById('create-form')?.scrollIntoView()} />
 
-      {/* Search */}
+      {/* Search and Filter */}
       <div style={{ margin: '1rem 0' }}>
         <input
           type="text"
@@ -174,7 +173,7 @@ export default function Stats() {
         </button>
       </div>
 
-      {/* Session List */}
+      {/* Sessions List */}
       <div style={{ marginTop: '2rem' }}>
         {filteredSessions.length === 0 ? (
           <p style={{ textAlign: 'center', color: '#64748b' }}>No sessions found</p>
