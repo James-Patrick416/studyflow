@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
+import logo from '../assets/images/logo.jpg';
 
 export default function Home() {
   const [quote, setQuote] = useState({ content: '', author: '' });
@@ -28,6 +29,17 @@ export default function Home() {
         <Link to="/pomodoro" className={styles.button}>Start Pomodoro</Link>
         <Link to="/custom" className={styles.button}>Custom Timer</Link>
         <Link to="/deepwork" className={styles.button}>Deep Work</Link>
+      </div>
+      <div style={{ marginTop: '3rem', textAlign: 'center' }}>
+        <img 
+          src={logo} 
+          alt="StudyFlow Logo" 
+          style={{ 
+            maxWidth: '200px', 
+            height: 'auto',
+            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+          }} 
+        />
       </div>
     </div>
   );

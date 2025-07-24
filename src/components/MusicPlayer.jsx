@@ -1,24 +1,65 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+// Directly import your music files
+import track1 from '../assets/music/1.mp3';
+import track2 from '../assets/music/2.mp3';
+import track3 from '../assets/music/3.mp3';
 
-// Import your music files (place these in src/assets/music/)
 const musicTracks = [
-  { id: 1, title: 'Focus Mix 1', file: '/music/1.mp3' },
-  { id: 2, title: 'Classical Study', file: '/music/2.mp3' },
-  { id: 3, title: 'Nature Sounds', file: '/music/3.mp3' }
+  { id: 1, title: 'Focus Mix 1', file: track1 },
+  { id: 2, title: 'Classical Study', file: track2 },
+  { id: 3, title: 'Nature Sounds', file: track3 }
 ];
 
 export default function MusicPlayer() {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.7);
+  const audioRef = useRef(null);
+
+  // Handle volume changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
+
+  // Handle play/pause
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    const playPromise = isPlaying ? audioRef.current.play() : audioRef.current.pause();
+    
+    if (isPlaying && playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.error("Playback failed:", error);
+        setIsPlaying(false);
+      });
+    }
+  }, [isPlaying]);
+
+  // Handle track changes
+  useEffect(() => {
+    if (currentTrack && audioRef.current) {
+      audioRef.current.src = currentTrack.file;
+      if (isPlaying) {
+        audioRef.current.play()
+          .catch(error => console.error("Playback failed:", error));
+      }
+    }
+  }, [currentTrack]);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
 
   const handleTrackSelect = (track) => {
-    setCurrentTrack(track);
-    setIsPlaying(true);
+    // If same track is selected, toggle play/pause
+    if (currentTrack && currentTrack.id === track.id) {
+      togglePlay();
+    } else {
+      setCurrentTrack(track);
+      setIsPlaying(true);
+    }
   };
 
   return (
@@ -94,16 +135,16 @@ export default function MusicPlayer() {
             max="1" 
             step="0.01"
             value={volume}
-            onChange={(e) => setVolume(e.target.value)}
+            onChange={(e) => setVolume(parseFloat(e.target.value))}
             style={{ width: '100%' }}
           />
           
           <audio
+            ref={audioRef}
             src={currentTrack.file}
-            autoPlay={isPlaying}
             loop
-            volume={volume}
             style={{ display: 'none' }}
+            onEnded={() => setIsPlaying(false)}
           />
         </div>
       )}

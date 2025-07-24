@@ -1,4 +1,5 @@
 import CustomTimer from '../components/CustomTimer';
+import MusicPlayer from '../components/MusicPlayer';
 
 export default function Custom() {
   return (

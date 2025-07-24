@@ -56,10 +56,45 @@ const DeepWorkTimer = () => {
       <div className="timer-display">{formatTime(timeLeft)}</div>
       
       <div className="timer-controls">
-        <button onClick={toggleTimer}>
+        <button
+         onClick={toggleTimer}
+         style={{
+            padding: '0.75rem 1.5rem',
+            backgroundColor: isActive ? '#ef4444' : '#10b981', // Red when active, green when paused
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            minWidth: '120px',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+            ':hover': {
+              transform: 'translateY(-2px)',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.2)'
+            }
+          }}
+         >
           {isActive ? 'Pause' : 'Start'}
         </button>
-        <button onClick={resetTimer}>Reset</button>
+        <button onClick={resetTimer}
+        style={{
+            padding: '0.75rem 1.5rem',
+            backgroundColor: '#e2e8f0',
+            color: '#4b5563',
+            border: 'none',
+            borderRadius: '8px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            minWidth: '120px',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+            ':hover': {
+              transform: 'translateY(-2px)',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.2)'
+            }
+          }}
+        >Reset</button>
       </div>
       
       {showForm && (
